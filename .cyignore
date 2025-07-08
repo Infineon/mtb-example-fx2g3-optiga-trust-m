@@ -1,0 +1,32 @@
+# Documentation
+images
+documents
+
+# Exports, Project settings
+.mtbLaunchConfigs
+.settings
+.vscode
+
+# Not required PALs
+$(SEARCH_optiga-trust-m)/extras/pal/NEW_PAL_TEMPLATE
+$(SEARCH_optiga-trust-m)/extras/pal/esp32_freertos
+$(SEARCH_optiga-trust-m)/extras/pal/libusb
+$(SEARCH_optiga-trust-m)/extras/pal/linux
+$(SEARCH_optiga-trust-m)/extras/pal/xmc4800
+$(SEARCH_optiga-trust-m)/extras/pal/xmc4800_freertos
+$(SEARCH_optiga-trust-m)/extras/pal/zephyr
+$(SEARCH_optiga-trust-m)/extras/pal/test_pal
+$(SEARCH_optiga-trust-m)/extras/pal/linux_uart
+$(SEARCH_optiga-trust-m)/extras/pal/windows_uart
+
+# Not required Crypto midlayers
+$(SEARCH_optiga-trust-m)/extras/pal/pal_crypt_openssl.c
+$(SEARCH_optiga-trust-m)/extras/pal/pal_crypt_wolfssl.c
+$(SEARCH_optiga-trust-m)/extras/pal/pal_crypt_mbedtls.c
+
+# Not required examples
+$(SEARCH_optiga-trust-m)/examples/
+$(SEARCH_optiga-trust-m)/external/
+
+# Not required tests
+$(SEARCH_optiga-trust-m)/tests
