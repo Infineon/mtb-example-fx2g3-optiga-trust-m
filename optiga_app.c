@@ -1,7 +1,7 @@
 /***************************************************************************//**
 * \file optiga_app.c
 *
-* \version 1.0.0
+* \version 1.0.1
 *
 * \details  This file provides the code for generating a keypair, signing a
 *           digest, and verifying the signature using the Optiga module, from an FX2G3
@@ -160,7 +160,7 @@ void Cy_Optiga_Deinit(void) {
  * \retval None
  */
 void printHex(uint8_t hexnum){
-	hexnum<=0xF ? Cy_Debug_AddToLog(1, "0x0%x ", hexnum) : Cy_Debug_AddToLog(1, "0x%x ", hexnum);
+    hexnum<=0xF ? Cy_Debug_AddToLog(1, "0x0%x ", hexnum) : Cy_Debug_AddToLog(1, "0x%x ", hexnum);
 #if USBFS_LOGS_ENABLE
     vTaskDelay(10);
 #endif
@@ -176,29 +176,29 @@ void printHex(uint8_t hexnum){
  * \retval None
  */
 void printArray16(char *arrayName, uint8_t *array, uint32_t length, bool header){
-	uint32_t rem = length%16;
-	char *ts = "          ";
-	Cy_Debug_AddToLog(1, "%s%s:\r\n%s", ts, arrayName, ts);
+    uint32_t rem = length%16;
+    char *ts = "          ";
+    Cy_Debug_AddToLog(1, "%s%s:\r\n%s", ts, arrayName, ts);
 #if USBFS_LOGS_ENABLE
     vTaskDelay(100);
 #endif
-	int i=0;
-	while(i<rem && header) printHex(array[i++]);
+    int i=0;
+    while(i<rem && header) printHex(array[i++]);
 #if USBFS_LOGS_ENABLE
     vTaskDelay(100);
 #endif
-	if(rem && header) Cy_Debug_AddToLog(1, "\r\n%s", ts);
+    if(rem && header) Cy_Debug_AddToLog(1, "\r\n%s", ts);
 #if USBFS_LOGS_ENABLE
     vTaskDelay(100);
 #endif
-	while(i<length){
-		for(int j=0; j<16 && i<length; j++) printHex(array[i++]);
-		Cy_Debug_AddToLog(1, "\r\n%s", ts);
+    while(i<length){
+        for(int j=0; j<16 && i<length; j++) printHex(array[i++]);
+        Cy_Debug_AddToLog(1, "\r\n%s", ts);
 #if USBFS_LOGS_ENABLE
     vTaskDelay(100);
 #endif
-	}
-	Cy_Debug_AddToLog(1, "> %s length: 0d%d\r\n\r\n", arrayName, length);
+    }
+    Cy_Debug_AddToLog(1, "> %s length: 0d%d\r\n\r\n", arrayName, length);
 #if USBFS_LOGS_ENABLE
     vTaskDelay(100);
 #endif
@@ -316,8 +316,8 @@ bool Cy_Optiga_HbDmaInit(void)
  * \retval None
  */
 void Cy_Optiga_Main(void){
-	uint32_t time_taken;
-	START_PERFORMANCE_MEASUREMENT(time_taken);
+    uint32_t time_taken;
+    START_PERFORMANCE_MEASUREMENT(time_taken);
     optiga_lib_status_t return_status = !OPTIGA_LIB_SUCCESS;
     optiga_key_id_t optiga_key_id;
 
@@ -394,8 +394,8 @@ void Cy_Optiga_Main(void){
 
 
         /**
-		 * 3. Sign the digest using Private key from Key Store ID E0F2
-		 */
+         * 3. Sign the digest using Private key from Key Store ID E0F2
+         */
         uint8_t signature[80];
         uint16_t signature_length = sizeof(signature);
         optiga_lib_status = OPTIGA_LIB_BUSY;
@@ -427,7 +427,7 @@ void Cy_Optiga_Main(void){
          * the required 4B header.
          */
 //      uint8_t ecc_public_key[sizeof(public_key)];
-//		uint16_t ecc_public_key_length = sizeof(ecc_public_key);
+//      uint16_t ecc_public_key_length = sizeof(ecc_public_key);
 //      optiga_app_util_encode_ecc_public_key_in_bit_string_format(public_key,
 //                                                            sizeof(public_key),
 //                                                            ecc_public_key,
@@ -440,21 +440,21 @@ void Cy_Optiga_Main(void){
                                                      (uint8_t)OPTIGA_ECC_CURVE_NIST_P_256
                                                     };
         optiga_lib_status = OPTIGA_LIB_BUSY;
-		return_status = optiga_crypt_ecdsa_verify(
-			crypt_me,
-			digest,
-			sizeof(digest),
-			signature,
-			signature_length,
-			OPTIGA_CRYPT_HOST_DATA,
-			&public_key_details
-		);
-		WAIT_AND_CHECK_STATUS(return_status, optiga_lib_status);
-		OPTIGA_LOG_MESSAGE("Sign Verification Complete");
+        return_status = optiga_crypt_ecdsa_verify(
+            crypt_me,
+            digest,
+            sizeof(digest),
+            signature,
+            signature_length,
+            OPTIGA_CRYPT_HOST_DATA,
+            &public_key_details
+        );
+        WAIT_AND_CHECK_STATUS(return_status, optiga_lib_status);
+        OPTIGA_LOG_MESSAGE("Sign Verification Complete");
 #if USBFS_LOGS_ENABLE
     vTaskDelay(100);
 #endif
-    } while (FALSE);		/* The loop allows us to break on error, and log the error code */
+    } while (FALSE);        /* The loop allows us to break on error, and log the error code */
     READ_PERFORMANCE_MEASUREMENT(time_taken);
     OPTIGA_LOG_PERFORMANCE_VALUE(time_taken, return_status);
 #if USBFS_LOGS_ENABLE

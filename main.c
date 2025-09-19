@@ -173,7 +173,7 @@ void Logging_Init (void)
  */
 void OptigaApplication(void * nothing){
 #if USBFS_LOGS_ENABLE
-    vTaskDelay(5000);
+    vTaskDelay(1000);
 #endif
     Cy_Optiga_Init();
     Cy_Optiga_Main();
@@ -209,7 +209,7 @@ int main (void)
     Cy_PDL_Init (&cy_deviceIpBlockCfgFX3G2);
 
     /* Initialize the device and board peripherals */
-	cybsp_init();
+    cybsp_init();
 
     /* Initialize appCtxt */
     memset((uint8_t *)&appCtxt, 0, sizeof(appCtxt));

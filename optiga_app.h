@@ -1,7 +1,7 @@
 /***************************************************************************//**
 * \file optiga_app.c
 *
-* \version 1.0.0
+* \version 1.0.1
 *
 * \details  This file provides the headers supporting operations such as generating
 *           a keypair, signing a digest, and verifying the signature using the 
@@ -74,7 +74,7 @@
 
 #define OPTIGA_LOG_ERROR(msg, ...) \
 { \
-	Cy_Debug_AddToLog(3, "[Optiga][ERROR]: "msg"%s", ##__VA_ARGS__, "\r\n"); \
+    Cy_Debug_AddToLog(3, "[Optiga][ERROR]: "msg"%s", ##__VA_ARGS__, "\r\n"); \
 }
 
 #define WAIT_AND_CHECK_STATUS(return_status, optiga_lib_status) \
@@ -92,7 +92,7 @@
 
 #define OPTIGA_LOG_STATUS(msg, return_value) \
 { \
-	if (OPTIGA_LIB_SUCCESS != return_value) { \
+    if (OPTIGA_LIB_SUCCESS != return_value) { \
          Cy_Debug_AddToLog(3, "[Optiga][ERROR]: %s, Status - 0x%x%s", msg, return_value, "\r\n"); \
     } \
     else\

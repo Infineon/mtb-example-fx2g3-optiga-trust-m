@@ -1,18 +1,17 @@
 # EZ-USB&trade; FX2G3: OPTIGA&trade; Trust M application
 
-This application demonstrates the utilization and capabilities of the OPTIGA&trade; Trust M module – included on board with the EZ-USB&trade; FX2G3 kit – for implementing security features such as device authentication.
+This code example demonstrates the utilization and capabilities of the OPTIGA&trade; Trust M module – included on board with the EZ-USB&trade; FX2G3 kit – for implementing security features such as device authentication.
 
-> **Note:** This code example is an alpha release only for EZ-USB&trade; FX2G3 devices.
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-fx2g3-optiga-trust-m)
 
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyNDEwNzIiLCJTcGVjIE51bWJlciI6IjAwMi00MTA3MiIsIkRvYyBUaXRsZSI6IkVaLVVTQiZ0cmFkZTsgRlgyRzM6IE9QVElHQSZ0cmFkZTsgVHJ1c3QgTSBhcHBsaWNhdGlvbiIsInJpZCI6InN1a3UiLCJEb2MgdmVyc2lvbiI6IjEuMC4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IldJUkVEIiwiRG9jIEZhbWlseSI6IkhTTFNfVVNCIn0=)
- 
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyNDEwNzIiLCJTcGVjIE51bWJlciI6IjAwMi00MTA3MiIsIkRvYyBUaXRsZSI6IkVaLVVTQiZ0cmFkZTsgRlgyRzM6IE9QVElHQSZ0cmFkZTsgVHJ1c3QgTSBhcHBsaWNhdGlvbiIsInJpZCI6InN1a3UiLCJEb2MgdmVyc2lvbiI6IjEuMC4xIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IldJUkVEIiwiRG9jIEZhbWlseSI6IkhTTFNfVVNCIn0=)
+
 
 ## Requirements
 
 
-- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.4 or later (tested with v3.4)
+- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.5 or later (tested with v3.5)
 - Board support package (BSP) minimum required version: 4.3.3
 - Programming language: C
 - Associated parts: [EZ-USB&trade; FX2G3](https://www.infineon.com/cms/en/product/promopages/ez-usb-fx2g3/)
@@ -21,7 +20,7 @@ This application demonstrates the utilization and capabilities of the OPTIGA&tra
 
 ## Supported toolchains (make variable 'TOOLCHAIN')
 
-- GNU Arm&reg; Embedded Compiler v11.3.1 (`GCC_ARM`) – Default value of `TOOLCHAIN`
+- GNU Arm&reg; Embedded Compiler v14.2.1 (`GCC_ARM`) – Default value of `TOOLCHAIN`
 - Arm&reg; Compiler v6.22 (`ARM`)
 
 
@@ -41,9 +40,12 @@ See the [ModusToolbox&trade; tools package installation guide](https://www.infin
 
 Install a terminal emulator if you do not have one. Instructions in this document use [Tera Term](https://teratermproject.github.io/index-en.html).
 
-Install the **EZ-USB&trade; FX Control Center** (Alpha) application from the [Infineon Developer Center](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.ezusbfxcontrolcenter).
+Install the **EZ-USB&trade; FX Control Center** (Alpha) application from [Infineon Developer Center](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.ezusbfxcontrolcenter).
 
-This example requires no additional software or tools.
+
+### Optional software
+
+[EZ-USB&trade; GPIF III Designer](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.ezusbgpifiiidesigner) - EZ-USB&trade; GPIF III Designer, a desktop application that guides the process of defining general programmable interface and state machine to generate C source header for FX device family.
 
 
 ## Using the code example
@@ -86,7 +88,7 @@ The 'project-creator-cli' tool can be used to create applications from a CLI ter
 
 Use a CLI terminal to invoke the 'project-creator-cli' tool. On Windows, use the command-line 'modus-shell' program provided in the ModusToolbox&trade; installation instead of a standard Windows command-line application. This shell provides access to all ModusToolbox&trade; tools. You can access it by typing "modus-shell" in the search box in the Windows menu. In Linux and macOS, you can use any terminal application.
 
-The following example clones the "[EZ-USB&trade; FX2G3: Optiga Trust M Application](https://github.com/Infineon/mtb-example-fx2g3-optiga-trust-m)" application with the desired name "FX2G3_Optiga_Trust_M" configured for the *KIT_FX2G3_104LGA* BSP into the specified working directory, *C:/mtb_projects*:
+The following example clones the "[EZ-USB&trade; FX2G3: Optiga Trust M application](https://github.com/Infineon/mtb-example-fx2g3-optiga-trust-m)" application with the desired name "FX2G3_Optiga_Trust_M" configured for the *KIT_FX2G3_104LGA* BSP into the specified working directory, *C:/mtb_projects*:
 
    ```
    project-creator-cli --board-id KIT_FX2G3_104LGA --app-id mtb-example-fx2g3-optiga-trust-m --user-app-name FX2G3_Optiga_Trust_M --target-dir "C:/mtb_projects"
@@ -141,8 +143,66 @@ For more details, see the [ModusToolbox&trade; tools package user guide](https:/
 </details>
 
 
+### Using this code example with specific products
+
+By default, the code example builds for the `CYUSB2318-BF104AXI` product.
+
+
+#### List of supported products
+
+- `CYUSB2318-BF104AXI`
+
+- `CYUSB2317-BF104AXI`
+
+- `CYUSB2316-BF104AXI`
+
+- `CYUSB2315-BF104AXI`
+
+
+#### Setup for a different product
+
+Perform the following steps to build this code example for a different, supported product:
+
+1. Launch the BSP assistant tool:
+
+   a. **Eclipse IDE:** Launch the **BSP Assistant** tool by navigating to **Quick Panel** > **Tools**
+
+   b. **Visual Studio Code:** Select the ModusToolbox&trade; extension from the menu bar, and launch the **BSP Assistant** tool, available in the **Application** menu of the **MODUSTOOLBOX TOOLS** section from the left pane
+
+2. In **BSP Assistant**, select **Devices** from the tree view on the left
+
+3. Choose `CYUSB231x-BF104AXI` from the drop-down menu, on the right
+
+4. Click **Save**
+
+   This closes the **BSP Assistant** tool.
+
+5. Navigate the project with the IDE's **Explorer** and delete the *GeneratedSource* folder (if available) at *`<bsp-root-folder>`/bsps/TARGET_APP_KIT_FX2G3_104LGA/config*
+
+   > **Note:** For products `CYUSB2315-BF104AXI` and `CYUSB2316-BF104AXI`, additionally delete the `*.cyqspi` file from the config/ directory
+
+6. Launch the **Device Configurator** tool
+
+   a. **Eclipse IDE:** Select your project in the project explorer, and launch the **Device Configurator** tool by navigating to **Quick Panel** > **Tools**
+
+   b. **Visual Studio Code:** Select the ModusToolbox&trade; extension from the left menu bar, and launch the **Device Configurator** tool, available in the **BSP** menu of the **MODUSTOOLBOX TOOLS** section from the left pane
+
+7. Correct the issues (if any) specified in the **Errors** section on the bottom
+
+   a. For a switch from the `CYUSB2318-BF104AXI` product to any other, a new upper limit of 100 MHz is imposed on the desired frequency that can originate from the PLL. Select this issue and change the desired frequency from 150 MHz to 75 MHz
+
+   b. The `CLK_PERI` clock, which is derived from this new source frequency, is also affected. To restore it to its original frequency, go to the **System Clocks** tab, select `CLK_PERI`, and set its divider to '1' (instead of '2')
+
+
+> **Note:** For the `CYUSB2315-BF104AXI` product, to enable UART logging through SCB, follow the steps below:<br>
+a. Set the `USBFS_LOGS_ENABLE` macro to `0` in the **Makefile**<br>
+b. In **main.c**, modify the SCB configuration by changing `LOGGING_SCB` from `(SCB4)` to `(SCB0)`, `LOGGING_SCB_IDX` from `(4)` to `(0)` and the value of `dbgCfg.dbgIntfce` from `CY_DEBUG_INTFCE_UART_SCB4` to `CY_DEBUG_INTFCE_UART_SCB0`<br>
+c. Launch the Device Configurator tool to disable `SCB4`, and enable `SCB0` for UART. Set `921600` baud, `9` Oversample, and use the `16 bit Divider 0 clk` clock
+
 
 ## Operation
+
+**Note:** This code example currently supports Windows hosts. Support for Linux and macOS will be added in upcoming releases.
 
 1. Connect the board (J2) to your PC using the provided USB cable
 
@@ -152,22 +212,24 @@ For more details, see the [ModusToolbox&trade; tools package user guide](https:/
 
 4. Follow these steps to program the board using the [**EZ-USB&trade; FX Control Center**](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.ezusbfxcontrolcenter) (Alpha) application
 
-   1. To enter into Bootloader mode:
+   1. Perform the following steps to enter into the **Bootloader** mode:
 
       a. Press and hold the **PMODE** (**SW1**) switch<br>
       b. Press and release the **RESET** switch<br>
-      c. Finally, release the **PMODE** switch<br>
-      
-   2. After opening the **EZ-USB&trade; FX Control Center** application, see the EZ-USB&trade; FX2G3 device displayed as **EZ-USB FX BOOTLOADER**
-      
-   3. Navigate to **Device Selection** > **Devices**, select **EZ-USB FX BOOTLOADER**, and click  **Program** > **Internal Flash** 
+      c. Release the **PMODE** switch<br>
 
-   4. Navigate to the *<CE Title>/build/APP_KIT_FX2G3_104LGA/Release* folder within the CE directory and locate the *.hex* file and program
+   2. Open **EZ-USB&trade; FX Control Center** application
+      The **EZ-USB&trade; FX2G3** device displays as **EZ-USB&trade; FX BOOTLOADER**
       
-   5. Confirm if the programming is successful in the log window of the FX Control Center application
+   3. Select the **EZ-USB&trade; FX BOOTLOADER** device in **EZ-USB&trade; FX Control Center** 
 
+   4. Navigate to **Program** > **Internal Flash**
+
+   5. Navigate to the *<CE Title>/build/APP_KIT_FX2G3_104LGA/Release* folder within the CE directory and locate the *.hex* file and program
+
+   6. Confirm if the programming is successful in the log window of the **EZ-USB&trade; FX Control Center** application
+   
 5. After programming, the application starts automatically. Confirm that the following title is displayed on the UART terminal:
-
 
    **Figure 1. Terminal output on program startup**
 
@@ -178,25 +240,22 @@ For more details, see the [ModusToolbox&trade; tools package user guide](https:/
 
 By default, the USBFS port is enabled for debug logs.
 
-To enable debug logs on UART, set the **USBFS_LOGS_ENABLE** compiler flag to '0u' in the *makefile* file. SCB4 of the EZ-USB&trade; FX2G3 device is used as UART with a baud rate of 921,600 to send out log messages through the P11.0 pin
+To enable debug logs on UART, set the **USBFS_LOGS_ENABLE** compiler flag to '0u' in the *Makefile* file. SCB4 of the EZ-USB&trade; FX2G3 device is used as UART with a baud rate of 921,600 to send out log messages through the P11.0 pin.
 
-Debug the code example by setting debug levels for the UART logs. Set the **DEBUG_LEVEL** macro in the *main.c* file with the following values for debugging:
+Debug the code example by setting debug levels for the UART logs. Set the `DEBUG_LEVEL` macro in the *main.c* file with the following values for debugging:
 
 **Table 1. Debug values**
 
  Macro value  | Description
  :--------    | :-------------
-1u            | Enable error messages
-2u            | Enable warning messages
-3u            | Enable info messages
-4u            | Enable all messages
+ 1u           | Enable only error messages
+ 2u           | Enable error and warning messages
+ 3u           | Enable error, warning, and info messages
+ 4u           | Enable all message types
 <br>
 
 
 ## Design and implementation
-
-> **Note:** The EZ-USB&trade; FX2G3 device has four MPNs/OPNs, each with distinct features. By default, this code example is compatible with the `CYUSB2318-BF104AXI` MPN, which is available on the `KIT_FX2G3_104LGA` kit. To use this code example with other MPNs, evaluate MPN compatibility and align it with the corresponding feature set. For details, contact the [Infineon support](https://www.infineon.com/cms/en/about-infineon/company/contacts/support/).
-
 
 The OPTIGA&trade; Trust M security module is included on board with the EZ-USB&trade; FX2G3 development kit. Communications between EZ-USB&trade; FX2G3 and the OPTIGA&trade; module are performed over I2C. The OPTIGA&trade; module is available at the I2C address defined by the [`OPTIGA_FX_ADDR`](./COMPONENT_OPTIGA_CYHAL/fx_pal_include/pal_custom.h#L17) macro. SDA and SCL lines are connected with the module, while RST and VDD are unavailable. To perform a reset without the RST pin, use the soft reset capability.
 
@@ -226,13 +285,11 @@ The application authenticates the OPTIGA&trade; module from the EZ-USB&trade; FX
 5. The signature is sent to OPTIGA&trade; and verified against the private key from the key store with the `OPTIGA_FREE_ECC_KEY_ID` ID
 
 
-### Compile-time configurations
+## Compile-time configurations
 
-Application functionality can be customized by setting variables in *Makefile* or by configuring them through `make` CLI arguments.
+This application's functionality can be customized by setting variables in *Makefile* or by configuring them through `make` CLI arguments.
 
-- Run the `make build` command or build the project in your IDE to compile the application and generate a USB bootloader-compatible binary. This binary can be programmed onto the EZ-USB&trade; FX2G3 device using the EZ-USB&trade; Control Center application
-
-- Run the `make build BLENABLE=no` command or set the variable in *Makefile* to compile the application and generate the standalone binary. This binary can be programmed onto the EZ-USB&trade; FX2G3 device through the SWD interface using the OpenOCD tool. For more details, see the [EZ-USB&trade; FX2G3 SDK user guide](./docs/EZ-USB-FX2G3-SDK-User-Guide.pdf)
+- Run the `make build` command or build the project in your IDE to compile the application and generate a USB bootloader-compatible binary. This binary can be programmed onto the EZ-USB&trade; FX2G3 device using the **EZ-USB&trade; FX Control Center** application
 
 - Run the `make build CORE=CM0P` command or set the variable in *Makefile* to compile and generate the binary for the Cortex&reg; M0+ core. By default, `CORE` is set as `CM4` and the binary is compiled and generated for the Cortex&reg; M4 core
 
@@ -242,16 +299,16 @@ Additional settings can be configured through macros specified by the `DEFINES` 
 
 **Table 2. Macro description**
 
-Flag name                           | Description  | Allowed values
-:-------------                      | :----------  | :--------------
-DEBUG_INFRA_EN      | Enable debug logging infrastructure  | 1u to enable debug logs <br> 0u to disable debug logs
-USBFS_LOGS_ENABLE   | Enable debug logs through USBFS port | 1u for debug logs over USBFS. <br> 0u for debug logs over UART (SCB4)
-OPTIGA_LIB_EXTERNAL | Pick the OPTIGA&trade; middleware config header | *'optiga_lib_config_mtb.h'*
-OPTIGA_INIT_DEINIT_DONE_EXCLUSIVELY | init/deinit managed by application         | 1u to use application-level init/deinit <br> 0u to use middleware operation-level init/deinit
+Flag name                           | Description                                      | Allowed values
+:-------------                      | :----------                                      | :--------------
+DEBUG_INFRA_EN                      | Enable debug logging infrastructure              | 1u to enable debug logs <br> 0u to disable debug logs
+USBFS_LOGS_ENABLE                   | Enable debug logs through USBFS port             | 1u for debug logs over USBFS <br> 0u for debug logs over UART (SCB4)
+OPTIGA_LIB_EXTERNAL                 | Pick the OPTIGA&trade; middleware config header  | optiga_lib_config_mtb.h
+OPTIGA_INIT_DEINIT_DONE_EXCLUSIVELY | init/deinit managed by application               | 1u to use application-level init/deinit <br> 0u to use middleware operation-level init/deinit
 <br>
 
 
-### Application files
+## Application files
 
 **Table 3. Application file description**
 File           | Description   
@@ -270,15 +327,18 @@ File           | Description
 
 Resources  | Links
 -----------|----------------------------------
+User guide | [EZ-USB&trade; FX2G3 SDK user guide](./docs/EZ-USB-FX2G3-SDK-User-Guide.pdf)
 Code examples  | [Using ModusToolbox&trade;](https://github.com/Infineon/Code-Examples-for-ModusToolbox-Software) on GitHub
 Device documentation | [EZ-USB&trade; FX2G3 datasheets](https://www.infineon.com/cms/en/product/promopages/ez-usb-fx2g3/#!?fileId=8ac78c8c90530b3a01909c03f29537e0)
-Development kits | Select your kits from the [Evaluation board finder](https://www.infineon.com/cms/en/design-support/finder-selection-tools/product-finder/evaluation-board).
+Development kits | Select your kits from the [Evaluation board finder](https://www.infineon.com/cms/en/design-support/finder-selection-tools/product-finder/evaluation-board)
 Libraries on GitHub | [mtb-pdl-cat1](https://github.com/Infineon/mtb-pdl-cat1) – Peripheral Driver Library (PDL) and documents
 Middleware on GitHub  | [usbfxstack](https://github.com/Infineon/usbfxstack) – USBFXStack middleware library and documents
-Tools  | [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) – ModusToolbox&trade; software is a collection of easy-to-use libraries and tools enabling rapid development with Infineon MCUs for applications ranging from wireless and cloud-connected systems, edge AI/ML, embedded sense and control, to wired USB connectivity using PSOC&trade; Industrial/IoT MCUs, AIROC&trade; Wi-Fi and Bluetooth&reg; connectivity devices, XMC&trade; Industrial MCUs, and EZ-USB&trade;/EZ-PD&trade; wired connectivity controllers. ModusToolbox&trade; incorporates a comprehensive set of BSPs, HAL, libraries, configuration tools, and provides support for industry-standard IDEs to fast-track your embedded application development.
-
-> **Note:** For more information about the software modules and configuration options, see the [EZ-USB&trade; FX2G3 SDK user guide](./docs/EZ-USB-FX2G3-SDK-User-Guide.pdf).
+Tools  | [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) – ModusToolbox&trade; software is a collection of easy-to-use libraries and tools enabling rapid development with Infineon MCUs for applications ranging from wireless and cloud-connected systems, edge AI/ML, embedded sense and control, to wired USB connectivity using PSOC&trade; Industrial/IoT MCUs, AIROC&trade; Wi-Fi and Bluetooth&reg; connectivity devices, XMC&trade; Industrial MCUs, and EZ-USB&trade;/EZ-PD&trade; wired connectivity controllers. ModusToolbox&trade; incorporates a comprehensive set of BSPs, HAL, libraries, configuration tools, and provides support for industry-standard IDEs to fast-track your embedded application development
 <br>
+
+### Compatibility information:
+* This code example uses the PDL layer for direct communication with device peripherals, without relying on HAL peripheral APIs
+* This code example relies on the USBFXStack middleware library for USBFS and does not support USBFS through the USB Device Middleware Library
 
 
 ## Other resources
@@ -294,6 +354,7 @@ Document title: *CE241072* – *EZ-USB&trade; FX2G3: OPTIGA&trade; Trust M appli
  Version | Description of change
  ------- | ---------------------
  1.0.0   | New code example
+ 1.0.1   | Updated to use the example with other products
 <br>
 
 
