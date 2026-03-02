@@ -75,7 +75,11 @@ void vPortSetupTimerInterrupt(void)
 
     /* Start the SysTick timer with a period of 1 ms. */
     Cy_SysTick_SetClockSource(CY_SYSTICK_CLOCK_SOURCE_CLK_CPU);
-    Cy_SysTick_SetReload(hfclkFreq / 1000U);
+#if CY_CPU_CORTEX_M4
+    Cy_SysTick_SetReload(Cy_SysClk_ClkFastGetFrequency() / 1000U);
+#else
+	Cy_SysTick_SetReload(Cy_SysClk_ClkSlowGetFrequency() / 1000U);
+#endif /* CY_CPU_CORTEX_M4 */
     Cy_SysTick_Clear();
     Cy_SysTick_Enable();
 }

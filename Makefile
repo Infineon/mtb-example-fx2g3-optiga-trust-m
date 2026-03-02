@@ -7,7 +7,7 @@
 #
 ################################################################################
 # \copyright
-# Copyright (2025), Cypress Semiconductor Corporation (an Infineon company)
+# Copyright (2026), Cypress Semiconductor Corporation (an Infineon company)
 # SPDX-License-Identifier: Apache-2.0
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -201,14 +201,14 @@ ASFLAGS=
 ifeq ($(CORE), CM4)
 	ifeq ($(TOOLCHAIN), GCC_ARM)
 	    LDFLAGS=-Wl,--start-group -mcpu=cortex-m4 -mthumb --entry=Reset_Handler -Wl,--gc-sections -g -ffunction-sections -finline-functions -Os -Wl,--end-group
-		LDFLAGS += --specs=nosys.specs
+	    LDFLAGS += --specs=nosys.specs
 	else ifeq ($(TOOLCHAIN), ARM)
 	    LDFLAGS=--cpu=Cortex-M4 --entry=Reset_Handler --diag_suppress=L6329W,L6314W 
 	endif
 else ifeq ($(CORE), CM0P)
 	ifeq ($(TOOLCHAIN), GCC_ARM)
 	    LDFLAGS=-Wl,--start-group -mcpu=cortex-m0plus -mthumb --entry=Reset_Handler -Wl,--gc-sections -g -ffunction-sections -finline-functions -Os -Wl,--end-group
-		LDFLAGS += --specs=nosys.specs
+	    LDFLAGS += --specs=nosys.specs
 	else ifeq ($(TOOLCHAIN), ARM)
 	    LDFLAGS=--cpu=Cortex-M0plus --entry=Reset_Handler --diag_suppress=L6329W,L6314W
 	endif
